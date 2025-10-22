@@ -2,34 +2,8 @@ package racingcar.converter;
 
 import java.util.List;
 
-public class InputConverter {
-    public List<String> getCarNames(String carNamesInput) {
-        List<String> carNames = List.of(carNamesInput.split(","));
+public interface InputConverter {
+    List<String> getCarNames(String carNamesInput);
 
-        if (hasDuplicateCarName(carNames)) {
-            throw new IllegalArgumentException();
-        }
-        return carNames;
-    }
-
-    public int getMoveCount(String moveCountInput) {
-        int moveCount = Integer.parseInt(moveCountInput);
-
-        if (isValidMoveCount(moveCount)) {
-            return moveCount;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    private boolean hasDuplicateCarName(List<String> carNames) {
-        int uniqueCount = (int) carNames.stream()
-                .distinct()
-                .count();
-
-        return carNames.size() > uniqueCount;
-    }
-
-    private boolean isValidMoveCount(int moveCount) {
-        return moveCount >= 0;
-    }
+    int getMoveCount(String moveCountInput);
 }

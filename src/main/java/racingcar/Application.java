@@ -1,7 +1,8 @@
 package racingcar;
 
 import racingcar.controller.RacingGameController;
-import racingcar.converter.InputConverter;
+import racingcar.converter.InputConverterImpl;
+import racingcar.util.RandomNumberGeneratorImpl;
 import racingcar.view.InputViewImpl;
 import racingcar.view.OutputViewImpl;
 
@@ -11,7 +12,8 @@ public class Application {
         RacingGameController controller = new RacingGameController(
                 new InputViewImpl(),
                 new OutputViewImpl(),
-                new InputConverter()
+                new InputConverterImpl(),
+                new RandomNumberGeneratorImpl()
         );
 
         controller.run();
