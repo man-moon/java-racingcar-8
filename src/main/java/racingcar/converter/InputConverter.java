@@ -3,7 +3,6 @@ package racingcar.converter;
 import java.util.List;
 
 public class InputConverter {
-
     public List<String> getCarNames(String carNamesInput) {
         List<String> carNames = List.of(carNamesInput.split(","));
 
@@ -32,7 +31,7 @@ public class InputConverter {
     }
 
     private boolean hasDuplicateCarName(List<String> carNames) {
-        int uniqueCount = (int)carNames.stream()
+        int uniqueCount = (int) carNames.stream()
                 .distinct()
                 .count();
 
