@@ -24,6 +24,7 @@ public class CarRace {
             runSingleRound();
             currentRound++;
         }
+        List<Car> winners = findWinners();
     }
 
     private void runSingleRound() {
@@ -31,5 +32,15 @@ public class CarRace {
             int randomNumber = randomNumberGenerator.generate();
             car.tryMove(randomNumber);
         });
+    }
+
+    private List<Car> findWinners() {
+        int maxPos = cars.stream()
+                .mapToInt(Car::getPos)
+                .max()
+                .orElse(0);
+        return cars.stream()
+                .filter(car -> car.getPos() == maxPos)
+                .toList();
     }
 }
