@@ -22,9 +22,11 @@ public class CarRace {
     public void start() {
         while (currentRound < lastRound) {
             runSingleRound();
+            outputView.printRaceStatus(cars, currentRound);
             currentRound++;
         }
         List<Car> winners = findWinners();
+        outputView.printRaceResult(winners);
     }
 
     private void runSingleRound() {
