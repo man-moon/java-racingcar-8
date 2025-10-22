@@ -7,7 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 public class InputConverterTest {
-    private final InputConverter converter = new InputConverter();
+    private final InputConverterImpl converter = new InputConverterImpl();
 
     @Test
     void 자동차_이름은_쉼표로_나누어짐() {
