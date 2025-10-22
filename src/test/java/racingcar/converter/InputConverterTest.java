@@ -9,36 +9,6 @@ import org.junit.jupiter.api.Test;
 public class InputConverterTest {
     private final InputConverter converter = new InputConverter();
 
-//    @Test
-//    void 자동차_이름은_5자_초과_불가능() {
-//        String carName = "Ferrari";
-//
-//        assertThatThrownBy(() -> converter.getCarNames(carName))
-//                .isInstanceOf(IllegalArgumentException.class);
-//    }
-//
-//    @Test
-//    void 자동차_이름은_공백_불가능() {
-//        String carName = "";
-//
-//        assertThatThrownBy(() -> converter.getCarNames(carName))
-//                .isInstanceOf(IllegalArgumentException.class);
-//    }
-//
-//    @Test
-//    void 자동차_이름은_1자_이상_5자_이하_가능() {
-//        String minLengthCarName = "A";
-//        String maxLengthCarName = "ABCD";
-//
-//        List<String> minLengthCarNames = converter.getCarNames(minLengthCarName);
-//        List<String> maxLengthCarNames = converter.getCarNames(maxLengthCarName);
-//
-//        assertThat(minLengthCarNames.size()).isEqualTo(1);
-//        assertThat(minLengthCarNames.getFirst()).isEqualTo("A");
-//        assertThat(maxLengthCarNames.size()).isEqualTo(1);
-//        assertThat(maxLengthCarNames.getFirst()).isEqualTo("ABCD");
-//    }
-
     @Test
     void 자동차_이름은_쉼표로_나누어짐() {
         String carNamesInput = "A,AB,ABC,ABCD,ABCDE";
