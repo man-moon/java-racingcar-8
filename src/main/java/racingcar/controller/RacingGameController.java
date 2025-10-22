@@ -13,7 +13,9 @@ public class RacingGameController {
     }
 
     public void run() {
-        outputView.requestInputCarNames();
+        outputView.requestCarNamesInput();
         String carNamesInput = inputView.readCarNames();
+        outputView.requestMoveCountInput();
+        String moveCountInput = inputView.readMoveCount();
     }
 }
