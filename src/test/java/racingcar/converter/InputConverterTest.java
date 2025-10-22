@@ -50,6 +50,14 @@ public class InputConverterTest {
     }
 
     @Test
+    void 자동차_이름은_중복_불가능() {
+        String carNamesInput = "ABC,ABC,DEF";
+
+        assertThatThrownBy(() -> converter.getCarNames(carNamesInput))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
     void 이동_횟수는_0_이상_INT_MAX_이하() {
         String minMoveCountInput = "0";
         String maxMoveCountInput = String.valueOf(Integer.MAX_VALUE);

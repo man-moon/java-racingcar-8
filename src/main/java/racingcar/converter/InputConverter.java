@@ -23,12 +23,20 @@ public class InputConverter {
     }
 
     private boolean allCarNamesValid(List<String> carNames) {
-        return carNames.stream()
-                .allMatch(this::isValidCarName);
+        return isValidCarNameLength(carNames) && hasDuplicateCarName(carNames);
     }
 
-    private boolean isValidCarName(String name) {
-        return !name.isEmpty() && name.length() <= 5;
+    private boolean isValidCarNameLength(List<String> carNames) {
+        return carNames.stream()
+                .allMatch(name -> !name.isEmpty() && name.length() <= 5);
+    }
+
+    private boolean hasDuplicateCarName(List<String> carNames) {
+        int uniqueCount = (int)carNames.stream()
+                .distinct()
+                .count();
+
+        return carNames.size() == uniqueCount;
     }
 
     private boolean isValidMoveCount(int moveCount) {
