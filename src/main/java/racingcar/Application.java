@@ -1,7 +1,7 @@
 package racingcar;
 
 import racingcar.controller.RacingGameController;
-import racingcar.parser.InputParser;
+import racingcar.converter.InputConverter;
 import racingcar.view.InputViewImpl;
 import racingcar.view.OutputViewImpl;
 
@@ -11,7 +11,7 @@ public class Application {
         RacingGameController controller = new RacingGameController(
                 new InputViewImpl(),
                 new OutputViewImpl(),
-                new InputParser()
+                new InputConverter()
         );
 
         controller.run();

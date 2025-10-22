@@ -1,0 +1,37 @@
+package racingcar.converter;
+
+import java.util.List;
+
+public class InputConverter {
+
+    public List<String> getCarNames(String carNamesInput) {
+        List<String> carNames = List.of(carNamesInput.split(","));
+
+        if (allCarNamesValid(carNames)) {
+            return carNames;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    public int getMoveCount(String moveCountInput) {
+        int moveCount = Integer.parseInt(moveCountInput);
+
+        if (isValidMoveCount(moveCount)) {
+            return moveCount;
+        }
+        throw new IllegalArgumentException();
+    }
+
+    private boolean allCarNamesValid(List<String> carNames) {
+        return carNames.stream()
+                .allMatch(this::isValidCarName);
+    }
+
+    private boolean isValidCarName(String name) {
+        return !name.isEmpty() && name.length() <= 5;
+    }
+
+    private boolean isValidMoveCount(int moveCount) {
+        return moveCount >= 0;
+    }
+}
