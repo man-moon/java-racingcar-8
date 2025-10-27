@@ -1,32 +1,39 @@
 package racingcar.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import racingcar.util.RandomNumberGenerator;
-import racingcar.view.OutputView;
 
 public class CarRace {
     private final RandomNumberGenerator randomNumberGenerator;
-    private final OutputView outputView;
-
     private final List<Car> cars;
-    private final int lastRound;
-    private int currentRound = 0;
+    private final int totalRounds;
 
-    public CarRace(int lastRound, List<Car> cars, RandomNumberGenerator randomNumberGenerator, OutputView outputView) {
-        this.lastRound = lastRound;
+    public CarRace(int lastRound, List<Car> cars, RandomNumberGenerator randomNumberGenerator) {
+        this.totalRounds = lastRound;
         this.cars = cars;
         this.randomNumberGenerator = randomNumberGenerator;
-        this.outputView = outputView;
     }
 
-    public void start() {
-        while (currentRound < lastRound) {
+    public List<RoundResult> start() {
+        List<RoundResult> results = new ArrayList<>();
+
+        for (int round = 1; round <= totalRounds; round++) {
             runSingleRound();
-            outputView.printRaceStatus(cars, currentRound);
-            currentRound++;
+            results.add(new RoundResult(round, List.copyOf(cars)));
         }
-        List<Car> winners = findWinners();
-        outputView.printRaceResult(winners);
+
+        return results;
+    }
+
+    public List<Car> getWinners() {
+        int maxPos = cars.stream()
+                .mapToInt(Car::getPos)
+                .max()
+                .orElse(0);
+        return cars.stream()
+                .filter(car -> car.getPos() == maxPos)
+                .toList();
     }
 
     private void runSingleRound() {
@@ -36,13 +43,6 @@ public class CarRace {
         });
     }
 
-    private List<Car> findWinners() {
-        int maxPos = cars.stream()
-                .mapToInt(Car::getPos)
-                .max()
-                .orElse(0);
-        return cars.stream()
-                .filter(car -> car.getPos() == maxPos)
-                .toList();
+    public record RoundResult(int round, List<Car> cars) {
     }
 }

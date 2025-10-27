@@ -14,8 +14,7 @@ public class CarRaceTest extends NsTest {
 
     @Test
     void 경주_테스트_1() {
-        assertRandomNumberInRangeTest(
-                () -> {
+        assertRandomNumberInRangeTest(() -> {
                     run("AAA,BBB,CCC,DDD", "5");
                     assertThat(output()).contains(
                             "AAA : ----", "BBB : -", "CCC : ---", "DDD : -----", "최종 우승자 : DDD"
@@ -31,8 +30,7 @@ public class CarRaceTest extends NsTest {
 
     @Test
     void 경주_테스트_2() {
-        assertRandomNumberInRangeTest(
-                () -> {
+        assertRandomNumberInRangeTest(() -> {
                     run("AAA,BBB,CCC,DDD", "2");
                     assertThat(output()).contains(
                             "AAA : ", "BBB : ", "CCC : ", "DDD : ", "최종 우승자 : AAA, BBB, CCC, DDD"
@@ -45,8 +43,7 @@ public class CarRaceTest extends NsTest {
 
     @Test
     void 경주_혼자_참여() {
-        assertRandomNumberInRangeTest(
-                () -> {
+        assertRandomNumberInRangeTest(() -> {
                     run("AAA", "5");
                     assertThat(output()).contains(
                             "AAA : ---", "최종 우승자 : AAA"
@@ -58,8 +55,7 @@ public class CarRaceTest extends NsTest {
 
     @Test
     void 경주_시도_횟수_0번인_경우_최종_우승자만_출력_단일() {
-        assertRandomNumberInRangeTest(
-                () -> {
+        assertRandomNumberInRangeTest(() -> {
                     run("AAA", "0");
                     assertThat(output()).contains(
                             "최종 우승자 : AAA"
@@ -71,8 +67,7 @@ public class CarRaceTest extends NsTest {
 
     @Test
     void 경주_시도_횟수_0번인_경우_최종_우승자만_출력_다중() {
-        assertRandomNumberInRangeTest(
-                () -> {
+        assertRandomNumberInRangeTest(() -> {
                     run("AAA,BBB,CCC", "0");
                     assertThat(output()).contains(
                             "최종 우승자 : AAA, BBB, CCC"

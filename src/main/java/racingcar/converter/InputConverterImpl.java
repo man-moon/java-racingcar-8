@@ -18,23 +18,24 @@ public class InputConverterImpl implements InputConverter {
 
     @Override
     public int getMoveCount(String moveCountInput) {
-        int moveCount = Integer.parseInt(moveCountInput);
-
-        if (isValidMoveCount(moveCount)) {
+        try {
+            int moveCount = Integer.parseInt(moveCountInput);
+            validateMoveCount(moveCount);
             return moveCount;
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException();
         }
-        throw new IllegalArgumentException();
     }
 
     private boolean hasDuplicateCarName(List<String> carNames) {
-        int uniqueCount = (int) carNames.stream()
+        return carNames.size() != carNames.stream()
                 .distinct()
                 .count();
-
-        return carNames.size() > uniqueCount;
     }
 
-    private boolean isValidMoveCount(int moveCount) {
-        return moveCount >= 0;
+    private void validateMoveCount(int moveCount) {
+        if (moveCount < 0) {
+            throw new IllegalArgumentException("이동 횟수는 0 이상이어야 합니다.");
+        }
     }
 }
