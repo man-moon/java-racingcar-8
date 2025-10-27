@@ -1,11 +1,14 @@
 package racingcar.converter;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class InputConverterImpl implements InputConverter {
     @Override
     public List<String> getCarNames(String carNamesInput) {
-        List<String> carNames = List.of(carNamesInput.split(","));
+        List<String> carNames = Arrays.stream(carNamesInput.split(","))
+                .map(String::trim)
+                .toList();
 
         if (hasDuplicateCarName(carNames)) {
             throw new IllegalArgumentException();

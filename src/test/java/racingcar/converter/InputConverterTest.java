@@ -20,6 +20,16 @@ public class InputConverterTest {
     }
 
     @Test
+    void 자동차_이름_앞뒤에_공백_제거() {
+        String carNamesInput = "   A,   B   ,C    ";
+
+        List<String> carNames = converter.getCarNames(carNamesInput);
+        List<String> correctCarNames = List.of("A", "B", "C");
+
+        assertThat(carNames).isEqualTo(correctCarNames);
+    }
+
+    @Test
     void 자동차_이름은_중복_불가능() {
         String carNamesInput = "ABC,ABC,DEF";
 
