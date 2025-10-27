@@ -6,7 +6,7 @@ import java.util.List;
 public class InputConverterImpl implements InputConverter {
     @Override
     public List<String> getCarNames(String carNamesInput) {
-        List<String> carNames = Arrays.stream(carNamesInput.split(","))
+        List<String> carNames = Arrays.stream(carNamesInput.split(",", -1))
                 .map(String::trim)
                 .toList();
 
